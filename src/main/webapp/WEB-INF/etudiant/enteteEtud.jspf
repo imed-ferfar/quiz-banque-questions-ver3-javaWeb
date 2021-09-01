@@ -1,0 +1,103 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<head>
+    <meta charset="utf-8">
+    <!-- Le titre de la page-->
+    <title>Bannque de question de Bois-de-Boulogne</title>
+    <!-- Ajout d'une icone au titre de la page-->
+    <link rel="icon" href="images/image5.jfif">
+
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/responsee.css">
+    <link rel="stylesheet" href="css/template-style.css">     
+    <script src="scripts/script.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!-- Chargement des polices (fontawesome)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+    <!-- Chargement des polices (google)-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+
+    <link href="css/styles.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/responsee.css">
+    <link rel="stylesheet" href="css/template-style.css">
+
+
+</head>
+<header>
+    <fmt:setLocale value="${sessionScope.langue}"/>
+    <fmt:setBundle basename="ApplicationRessource"/>
+    <!--La barre de navigation-->
+    <nav style ="position: fixed">
+        <div class="line">
+            <!--Version mobile du logo -->
+            <div class="top-nav">              
+                <div class="s-12 l-5">
+                    <ul class="right top-ul chevron">
+                        <li id="Mwelcome"><a href="Acceuil"><fmt:message key="entete.acceuil"/></a>
+                        </li>
+                        <li><a href="PageProfil"><fmt:message key="entete.profil"/></a>
+                        </li>
+                        <li><a href="PageGroupes"><fmt:message key="entete.groupe"/></a>
+                        </li>
+                        <li><a href="passerExamen.jsp"><fmt:message key="entete.pExamen"/></a>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="s-12 l-2">
+                    <li class="logo hide-s hide-m">
+                        <a href="Acceuil"><fmt:message key="entete.quiz"/><br/><strong>Bois-de-Boulogne</strong></a>
+                    </li>
+                </ul>
+                <div class="s-12 l-5">
+                    <ul class="left top-ul chevron">
+                        <li><a href="PreparerQuiz"><fmt:message key="entete.pQuiz"/></a>
+                        </li>
+                         <li>
+                            <%  String langue = (String) session.getAttribute("langue");
+                                if (langue != null) {%>
+                            <a href=""><fmt:message key="entete.langue"/></a>		    
+                            <ul>
+                                <form name="maForm" action="Acceuil" method="post">
+                                    <li><div class="form-group" align="center"><a href="Acceuil?source=fr_CA&uri=<%out.println(request.getRequestURI());%>">
+                                                <input type="radio" name="langue" value="fr_CA" class =" btn btn-group" onchange="submit()" 
+                                                       <% if (langue.contains("fr")) out.println("checked");%> /> Français</a></div>
+                                    </li>
+                                    <li><div class="form-group" align="center"><a href="Acceuil?source=en_US&uri=<%out.println(request.getRequestURI());%>">
+                                                <input type="radio" name="langue" value="en_US" class ="btn btn-group" onchange="submit()" 
+                                                       <% if (langue.contains("en")) out.println("checked");%>/> English</a></div>
+                                    </li>
+                                    <li><div class="form-group" align="center"><a href="Acceuil?source=ar_DZ&uri=<%out.println(request.getRequestURI());%>">
+                                                <input type="radio" name="langue" value="ar_DZ" class ="btn btn-group" onchange="submit()"
+                                                       <%  if (langue.contains("ar")) out.println("checked");}%>/> العربية</a></div>
+                                    </li>
+                                    <input type="hidden" name="uri" value="<%out.println(request.getRequestURI());%>" />
+                                </form>
+                            </ul>
+                        </li>
+                        
+                        
+                        
+                        
+
+                        <li><a href="Deconnexion"><fmt:message key="entete.deconnexion"/></a>
+                        </li>
+                    </ul> 
+                    <br>
+                    <p style ="color:#95A5A6; size:15; text-align: left" ><b><a href="PageProfil">${sessionScope.perso.nom} ${sessionScope.perso.prenom}</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
